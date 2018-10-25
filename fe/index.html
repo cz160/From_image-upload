@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <form id="form"  method="POST" enctype="multipart/form-data">
+        <input type="file" name="logo">
+        <input type="text" value = "123" name="name">
+        <button type="submit">submit</button>
+    </form>
+    <script src="./jquery-2.2.3.min.js"></script>
+    <script src="./jquery.form.min.js"></script>
+    <script>
+        
+        $('#form').submit(function (e) {
+            e.preventDefault()
+            $(this).ajaxSubmit({
+                url: 'http://localhost:3000/api/test',
+                success: (results) => {
+                    console.log(results)
+                },  //提交成功后的回调函数
+                dataType: "json", //html(默认), xml, script, json...接受服务端返回的类型
+                resetForm: false  //成功提交后，是否重置所有表单元素的值
+            })
+
+            return false
+
+            
+
+
+            // let formdata = new FormData()
+            // formdata.append('file', input.files[0])
+            // formdata.append('name', name.value)
+            // $.ajax({
+            //     url: '',
+            //     type:'post',
+            //     data:formdata
+            // })
+
+
+        })
+    
+    </script>
+</body>
+</html>
